@@ -8,11 +8,11 @@
 
 [mcu]
 ## Obtain definition by "ls -l /dev/serial/by-id/" then unplug to verify
-serial: /dev/serial/by-id/usb-Klipper_stm32f407xx_50002B000750414238323520-if00
+serial: /dev/serial/by-id/usb-Klipper_stm32f407xx_50002B000750414238323520-if00		# 串口id，已填
 
+########################################
 
-#--------------------------------------------------------------------
-##--------------------------------------------------------------------
+########################################
 [printer]
 kinematics: corexy                      #机器架构
 max_velocity: 300  			#最大速率
@@ -20,7 +20,9 @@ max_accel: 2000   			#最大加速度  Max 4000
 max_z_velocity: 15 			#z轴最大速率 Max 15 for 12V TMC Drivers, can increase for 24V
 max_z_accel: 300           		#z轴最大加速度
 square_corner_velocity: 5.0
+########################################
 
+########################################
 [stepper_x]
 step_pin:PC14				# x驱动步进引脚
 dir_pin: PC13				# x驱动方向引脚
@@ -32,12 +34,12 @@ endstop_pin:PA13			# x轴限位开关引脚
 position_min: 0  			# x轴最小坐标
 position_endstop: 230		# x轴限位开关坐标
 position_max: 230			# x轴最大坐标
-
-#--------------------------------------------------------------------
 homing_speed:50				# x轴归位速度
 homing_retract_dist:5			# x轴归位后缩进
 homing_positive_dir:true		# 
+########################################
 
+########################################
 [stepper_y]
 step_pin:PE5				# y驱动步进引脚
 dir_pin: !PE4				# y驱动方向引脚
@@ -49,12 +51,12 @@ endstop_pin:PC5 			# y轴限位开关引脚
 position_min: 0				# y轴最小坐标
 position_endstop:230		# y轴限位开关坐标
 position_max:230			# y轴最大坐标
-
-#--------------------------------------------------------------------
 homing_speed:50				# y轴归位速度
 homing_retract_dist:5		# y轴归位后缩进
 homing_positive_dir:true
+########################################
 
+########################################
 [stepper_z]
 step_pin:PE1				# z0驱动步进引脚
 dir_pin:!PE0				# z0驱动方向引脚
@@ -63,18 +65,14 @@ microsteps: 16				# z0轴驱动细分数
 rotation_distance: 40
 full_steps_per_rotation: 200		# z0轴步进电机一圈步进数
 gear_ratio: 80:16			# z0传动减速比
-endstop_pin:probe:z_virtual_endstop ## PB12 for Z-max; endstop have'!' is NO
-
-##  Z-position of nozzle (in mm) to z-endstop trigger point relative to print surface (Z0)
-##  (+) value = endstop above Z0, (-) value = endstop below
-##	Increasing position_endstop brings nozzle closer to the bed
-##  After you run Z_ENDSTOP_CALIBRATE, position_endstop will be stored at the very end of your config
-#position_endstop:-5
+endstop_pin:probe:z_virtual_endstop 	# 
 position_max: 200
 position_min: -5
 homing_speed: 8
 second_homing_speed: 3
+########################################
 
+########################################
 [bltouch]
 sensor_pin: ^PB13
 control_pin: PA8
@@ -82,14 +80,18 @@ y_offset: 27
 z_offset: 1.75
 #pin_up_reports_not_triggered: False
 #pin_up_touch_mode_reports_triggered: False
+########################################
 
+########################################
 [bed_mesh]
 speed: 120
 horizontal_move_z: 5
 mesh_min: 40, 40
 mesh_max: 190, 190
 probe_count: 5, 5
+########################################
 
+########################################
 [stepper_z1]
 step_pin:PD6
 dir_pin:PD5
@@ -98,7 +100,9 @@ microsteps:16
 rotation_distance: 40
 full_steps_per_rotation: 200
 gear_ratio: 80:16
+########################################
 
+########################################
 [stepper_z2]
 step_pin:PD2
 dir_pin:!PD1
@@ -107,7 +111,9 @@ microsteps: 16
 rotation_distance: 40
 full_steps_per_rotation: 200
 gear_ratio: 80:16
+########################################
 
+########################################
 [stepper_z3]
 step_pin:PC7
 dir_pin:!PC6
@@ -116,8 +122,9 @@ microsteps:16
 rotation_distance:40
 full_steps_per_rotation: 200
 gear_ratio:80:16
+########################################
 
-
+########################################
 [extruder]
 step_pin:PB5
 dir_pin:PB4
@@ -139,38 +146,18 @@ control : pid  						# 控制算法（可以是 pid 或 watermark）
 pid_Kp=29.487                       # 比例	
 pid_Ki=1.946                     # 比例
 pid_Kd=111.681                  # 微分
-
 pressure_advance: 0.05 					# 加速时挤出机的原始耗材长度，等于减速时挤出机回抽的耗材长度，单位mm/(mm/s)，预设为 0，禁用压力提前。
 pressure_advance_smooth_time: 0.040			# 一个用来计算压力提前评价挤出速度的时间范围，单位（s）。  更大的值可以获得更流畅的挤出机运动。这个参数不超过200ms，僅在壓力提前不為 0 時起效。預設為 0.040 (40 毫秒)。
-#[extruder1]
-#step_pin: PD6
-#dir_pin: !PD5
-#enable_pin: !PD7
-#heater_pin: PB0
-#sensor_pin: PC2
+########################################
 
-#[extruder2]
-#step_pin: PD2
-#dir_pin: !PD1
-#enable_pin: !PD3
-#heater_pin: PA3
-#sensor_pin: PC3
-
-#[extruder3]
-#step_pin: PC7
-#dir_pin: PC6
-#enable_pin: !PC8
-
-#[extruder4]
-#step_pin: PD13
-#dir_pin: !PD12
-#enable_pin: !PD14
-
+########################################
 [verify_heater heater_bed]
 max_error: 600
 check_gain_time:180
 heating_gain: 1
+########################################
 
+########################################
 [heater_bed]					# 加热床
 heater_pin: PB10
 sensor_type: NTC 100K MGB18-104F39050L32	# 热床温度传感器类型
@@ -185,67 +172,65 @@ pid_kp = 71.039
 pid_ki = 2.223
 pid_kd = 567.421
 min_temp: 0					# 最小温度
-max_temp: 100				# 最大温度
-###################################################################
-###################################################################
+max_temp: 100					# 最大温度
+########################################
 
-#fan for printed model FAN0	# 打印冷却风扇0
-[fan]
-pin: PB0					    # 打印冷却风扇0的输出引脚。必须提供此参数。
+########################################
+[fan]						# fan for printed model FAN0	# 打印冷却风扇0
+pin: PB0					# 打印冷却风扇0的输出引脚。必须提供此参数。
 max_power: 1.0					# 引脚允许被设置的最大占空比（在0.0和1.0之间）。1.0 允许引脚被长时间完全启用，而0.5会只允许引脚只在一半的时间里被启用。这个设置可以限制风扇的最大功率（平均功率）。如果这个值小于 1.0 则风速请求会被缩放到 0 和 max_power 之间（例如，如果 max_power 是 0.9，请求 80% 风速速度会使风扇功率设为72%）。 默认为1.0。
 shutdown_speed: 1				# 在微控制器进入错误状态时期望的（一个在0.0和1.0之间的值）风扇速度。默认为 0。
 #cycle_time:					# 每个PWM电源周期到风扇的时间(以秒为单位)。当使用基于软件的PWM时，建议这是10毫秒或更大。缺省值是0.010秒。
 #hardware_pwm:					# 使这使用硬件PWM代替软件PWM。大多数风扇都不能很好地与硬件PllM工作，所以不建议启用这一功能，除非有电气要求，以非常高的速度切换。当使用硬件PWM时，实际的周期时间受到实现的限制，可能与请求的cycle_time有很大的不同。默认为False。
 #kick_start_time:				# 当第一次启用或增加超过50%时，风扇全速运转的时间(以秒为单位)(有助于使风扇旋转)。缺省值是0.100秒。
-#off_below:					    # 将为风扇供电的最小输入速度(表示为0.0到1.0的值)。当速度低于off_below被要求时，风扇将被关闭。此设置可用于防止风扇档位，并确保启动启动有效。默认值为θ.0。
+#off_below:					# 将为风扇供电的最小输入速度(表示为0.0到1.0的值)。当速度低于off_below被要求时，风扇将被关闭。此设置可用于防止风扇档位，并确保启动启动有效。默认值为θ.0。
 #tachometer_pin:				# 转速表输入引脚用于监测风扇转速。通常需要引体向上。可选参数。
 #tachometer_ppr:				# 当指定tachometer_pin时，这是转速计信号每转的脉冲数。对于无刷直流风扇来说，这通常是电杆数量的一半。默认值为2。
-#tachometer_poll_interval:		# 当指定tachometer_pin时，这是转速表引脚的轮询周期，以秒为单位。默认值是0.0015，对于2 PPR、10000 RPM以下的风扇来说已经足够快了。这必须小于30/(tachometer_ppr*rpm)，有一些余量，其中rpm是风扇的最大速度(以rpm表示)。
-#fan for hotend FAN1			#
-#[heater_fan my_nozzle_fan]		#
-###################################################################
-###################################################################
+#tachometer_poll_interval:			# 当指定tachometer_pin时，这是转速表引脚的轮询周期，以秒为单位。默认值是0.0015，对于2 PPR、10000 RPM以下的风扇来说已经足够快了。这必须小于30/(tachometer_ppr*rpm)，有一些余量，其中rpm是风扇的最大速度(以rpm表示)。
+#fan for hotend FAN1				#
+#[heater_fan my_nozzle_fan]			#
+########################################
 
+########################################
 [heater_fan fan1]				# 挤出头加热器冷却风扇1
-pin: PA0					    # 风扇控制引脚
+pin: PA0					# 风扇控制引脚
 shutdown_speed: 1				# 在微控制器进入错误状态时期望的（一个在0.0和1.0之间的值）风扇速度。默认为 0。
 max_power: 1.0					# 引脚允许被设置的最大占空比（在0.0和1.0之间）。1.0 允许引脚被长时间完全启用，而0.5会只允许引脚只在一半的时间里被启用。这个设置可以限制风扇的最大功率（平均功率）。如果这个值小于 1.0 则风速请求会被缩放到 0 和 max_power 之间（例如，如果 max_power 是 0.9，请求 80% 风速速度会使风扇功率设为72%）。 默认为1.0。
 #cycle_time:					# 每个PWM电源周期到风扇的时间(以秒为单位)。当使用基于软件的PWM时，建议这是10毫秒或更大。缺省值是e.010秒。
 #hardware_pwm:					# 使这使用硬件PWM代替软件PWM。大多数风扇都不能很好地与硬件PllM工作，所以不建议启用这一功能，除非有电气要求，以非常高的速度切换。当使用硬件PWM时，实际的周期时间受到实现的限制，可能与请求的cycle_time有很大的不同。默认为False。
 #kick_start_time:				# 当第一次启用或增加超过50%时，风扇全速运转的时间(以秒为单位)(有助于使风扇旋转)。缺省值是0.100秒。
-#off_below:					    # 将为风扇供电的最小输入速度(表示为0.0到1.0的值)。当速度低于off_below被要求时，风扇将被关闭。此设置可用于防止风扇档位，并确保启动启动有效。默认值为θ.0。
-						        # 当max_power被调整时，这个设置应该被重新校准。要校准此设置，首先将off_below设置为e.e，风扇旋转。逐渐降低风扇转速，确定可靠驱动风扇不失速的最低输入转速。将off_below设置为对应此值的占空比(例如，12% -> 9.12)或稍高一点。
+#off_below:					# 将为风扇供电的最小输入速度(表示为0.0到1.0的值)。当速度低于off_below被要求时，风扇将被关闭。此设置可用于防止风扇档位，并确保启动启动有效。默认值为θ.0。
+						# 当max_power被调整时，这个设置应该被重新校准。要校准此设置，首先将off_below设置为e.e，风扇旋转。逐渐降低风扇转速，确定可靠驱动风扇不失速的最低输入转速。将off_below设置为对应此值的占空比(例如，12% -> 9.12)或稍高一点。
 #tachometer_pin:				# 转速表输入引脚用于监测风扇转速。通常需要引体向上。可选参数。
 #tachometer_ppr:				# 当指定tachometer_pin时，这是转速计信号每转的脉冲数。对于无刷直流风扇来说，这通常是电杆数量的一半。默认值为2。
-#tachometer_poll_interval:		# 当指定tachometer_pin时，这是转速表引脚的轮询周期，以秒为单位。默认值是e.0015，对于2 PPR、10000 RPM以下的风扇来说已经足够快了。这必须小于30/(tachometer_ppr*rpm)，有一些余量，其中rpm是风扇的最大速度(以rpm表示)。
+#tachometer_poll_interval:			# 当指定tachometer_pin时，这是转速表引脚的轮询周期，以秒为单位。默认值是e.0015，对于2 PPR、10000 RPM以下的风扇来说已经足够快了。这必须小于30/(tachometer_ppr*rpm)，有一些余量，其中rpm是风扇的最大速度(以rpm表示)。
 #heater: extruder				# 该风扇关联的加热器配置分段名称。如果提供了一个逗号分隔的加热器列表，则风扇将会在任一加热器被启用时启动 默认为"extruder"。
 #heater_temp: 50.0				# 风扇可以被禁用的最高加热器温度（以摄氏度为单位）。加热器必须被降低到该温度以下风扇才会被禁用。默认为 50 摄氏度。
 #fan_speed: 1.0					# 当相关联的加热器活跃时该风扇的速度（在0.0和1.0之间）。默认为 1.0
 [heater_fan fan2]				# 挤出头加热器冷却风扇2
-pin: PA1					    # 风扇控制引脚
+pin: PA1					# 风扇控制引脚
 shutdown_speed: 1				# 在微控制器进入错误状态时期望的（一个在0.0和1.0之间的值）风扇速度。默认为 0。
 max_power: 1.0	
-####################################################################
+########################################
 
-
-
-#####################################################################
-#	Homing and Gantry Adjustment Routines
-#####################################################################
+########################################
 [idle_timeout]
 timeout: 3600
+########################################
 
+########################################
 [safe_z_home]
 home_xy_position: 110,100 # Change coordinates to the center of your print bed
 speed: 100
 z_hop: 10                 # Move up 10mm
 z_hop_speed: 5
+########################################
 
+########################################
 [quad_gantry_level]
 gantry_corners:
 	-100,-45
-    315,295
-##	Probe points
+   	 315,295
 points:
 	40,40
 	40,190
@@ -256,10 +241,9 @@ horizontal_move_z: 10
 retries: 2
 retry_tolerance: 0.1
 max_adjust: 10
+########################################
 
-#####################################################################
-# 	Probe
-#####################################################################
+########################################
 #[probe]
 #pin:!PB13
 #x_offset: 0
@@ -271,11 +255,9 @@ max_adjust: 10
 #sample_retract_dist: 3.0
 #samples_tolerance: 0.05
 #amples_tolerance_retries: 1
+########################################
 
-#####################################################################
-# LED Control
-#####################################################################
-
+########################################
 #[output_pin caselight ](Use PA9)
 ##  Chamber Lighting - In 5V-RGB Position
 #pin: PA9
@@ -283,11 +265,9 @@ max_adjust: 10
 #shutdown_value: 0
 #value:100
 #cycle_time: 0.01
-
-########################################
-# TMC UART configuration
 ########################################
 
+########################################
 [tmc2209 stepper_x]
 uart_pin: PE6
 interpolate: True
