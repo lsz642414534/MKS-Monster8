@@ -32,7 +32,7 @@ rotation_distance: 40
 full_steps_per_rotation:200  		# y轴步进电机一圈步进数
 endstop_pin:PA13			# x轴限位开关引脚
 position_min: 0  			# x轴最小坐标
-position_endstop: 230		# x轴限位开关坐标
+position_endstop: 230			# x轴限位开关坐标
 position_max: 230			# x轴最大坐标
 homing_speed:50				# x轴归位速度
 homing_retract_dist:5			# x轴归位后缩进
@@ -49,10 +49,10 @@ rotation_distance: 40
 full_steps_per_rotation:200 		# y轴步进电机一圈步进数
 endstop_pin:PC5 			# y轴限位开关引脚
 position_min: 0				# y轴最小坐标
-position_endstop:230		# y轴限位开关坐标
+position_endstop:230			# y轴限位开关坐标
 position_max:230			# y轴最大坐标
 homing_speed:50				# y轴归位速度
-homing_retract_dist:5		# y轴归位后缩进
+homing_retract_dist:5			# y轴归位后缩进
 homing_positive_dir:true
 ########################################
 
@@ -71,12 +71,13 @@ position_min: -5
 homing_speed: 8
 second_homing_speed: 3
 ########################################
-
+#  bltouch  校准
 ########################################
 [bltouch]
-sensor_pin: ^PB13
-control_pin: PA8
-y_offset: 27
+sensor_pin: ^PB13			# 连接到 BLTouch sensor 引脚的引脚。大多数 BLTouch 需要在sensor 引脚上有一个拉高电阻（在引脚名前加上“^”）。必须提供这个参数。
+control_pin: PA8			# 连接到 BLTouch control 引脚的引脚。 必须提供这个参数。
+#x_offset: 27				# x偏移，（探头在x轴上与喷头距离）
+y_offset: 27				# x偏移，（探头在x轴上与喷头距离）
 z_offset: 1.75
 #pin_up_reports_not_triggered: False
 #pin_up_touch_mode_reports_triggered: False
